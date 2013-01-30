@@ -1,5 +1,8 @@
+from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
+from django.template import Context
 from django.utils.importlib import import_module
+
 
 def get_email_processors():
     processors = []
@@ -19,13 +22,13 @@ def get_email_processors():
         processors.append(func)
     return tuple(processors)
 
- class EmailContext(Context):
+class EmailContext(Context):
     """
     This subclass of template.Context automatically populates itself using
     the processors defined in EAZY_EMAIL_CONTEXT_PROCESSORS.
     """
     def __init__(self, dict_=None):
-        Context.__init__(self, dict_, current_app=current_app,
+        Context.__init__(self, dict_, current_app=None,
                 use_l10n=None, use_tz=None)
         for processor in get_email_processors():
             self.update(processor())
