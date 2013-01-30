@@ -11,6 +11,7 @@ INSTALLED_APPS (
 
 # django-eazy-email
 EAZY_EMAIL_CONTEXT_PROCESSORS = (
-    'django_eazy_email.context_processors.settings',
+    'django_eazy_email.context_processors.static',
+    'django_eazy_email.context_processors.media',
 )
 ```
