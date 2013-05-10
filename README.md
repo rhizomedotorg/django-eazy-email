@@ -1,8 +1,6 @@
 django-eazy-email
 =================
 
-Eazy-E
-
 ```python
 INSTALLED_APPS (
     ...
