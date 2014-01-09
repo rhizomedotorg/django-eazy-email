@@ -1,6 +1,10 @@
 django-eazy-email
 =================
 
+```bash
+pip install -e git+https://github.com/rhizomedotorg/django-eazy-email.git@master#egg=django_eazy_email-dev
+```
+
 ```python
 INSTALLED_APPS (
     ...
