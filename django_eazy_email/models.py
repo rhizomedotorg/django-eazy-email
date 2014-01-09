@@ -32,7 +32,7 @@ class EazyEmail(models.Model):
         return render_to_string(template_name, dictionary)
 
     def send(self, from_email, to, bcc=None, template_name=None, extra_context={}, text_only=False):
-        email = EmailMultiAlternatives(self.subject, self.render_text_body(dictionary), from_email, to, bcc)
+        email = EmailMultiAlternatives(self.subject, self.render_text_body(extra_context), from_email, to, bcc)
         if not text_only:
-            email.attach_alternative(self.html_content(template_name, dictionary), 'text/html')
+            email.attach_alternative(self.html_content(template_name, extra_context), 'text/html')
         email.send(fail_silently=False)
