@@ -11,7 +11,7 @@ class EazyEmail(models.Model):
     description = models.TextField(blank=True)
     subject = models.CharField(max_length=100, blank=True)
     text_body = models.TextField(blank=True)
-    html_body = models.TextField(blank=True)
+    html_body = models.TextField('HTML body', blank=True)
 
     def __unicode__(self):
         return '%s' % self.title
