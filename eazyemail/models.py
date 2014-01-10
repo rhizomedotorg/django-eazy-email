@@ -3,7 +3,7 @@ from django.db import models
 from django.template import Template
 from django.template.loader import render_to_string
 
-from django_eazy_email.context import EmailContext
+from eazyemail.context import EmailContext
 
 
 class EazyEmail(models.Model):

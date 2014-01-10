@@ -1,5 +1,5 @@
 from django.http import Http404, HttpResponse
-from django_eazy_email.models import EazyEmail
+from eazyemail.models import EazyEmail
 
 
 def preview(request, object_id, template_name=None, extra_context={}):

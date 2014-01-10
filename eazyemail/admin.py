@@ -1,7 +1,7 @@
 from django.conf.urls.defaults import patterns
 from django.contrib import admin
-from django_eazy_email.models import EazyEmail
-from django_eazy_email.views import preview
+from eazyemail.models import EazyEmail
+from eazyemail.views import preview
 
 
 class EazyEmailAdmin(admin.ModelAdmin):
