@@ -1,11 +1,9 @@
-from django.http import Http404, HttpResponse
+from django.http import HttpResponse
+from django.shortcuts import get_object_or_404, render
+
 from eazyemail.models import EazyEmail
 
 
-def preview(request, object_id, template_name=None, extra_context={}):
-    try:
-        ez_email= EazyEmail.objects.get(pk=object_id)
-    except EazyEmail.DoesNotExist:
-        raise Http404   
-
-    return HttpResponse(ez_email.html_content(template_name, extra_context))
+def preview(request, slug):
+    email = get_object_or_404(EazyEmail, slug=slug)
+    return HttpResponse(ez_email.html_content(email.dummy_data_dict))
