@@ -4,6 +4,7 @@ from django.core.mail import EmailMessage, EmailMultiAlternatives
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.template import Template
+from django.template.defaultfilters import slugify
 from django.template.loader import render_to_string
 
 from eazyemail.context import EmailContext
