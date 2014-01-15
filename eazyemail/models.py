@@ -1,4 +1,5 @@
 import json
+import markdown
 
 from django.core.mail import EmailMessage, EmailMultiAlternatives
 from django.core.urlresolvers import reverse
@@ -37,7 +38,7 @@ class EazyEmail(models.Model):
         return Template(self.text_body).render(EmailContext(dictionary))
 
     def render_html_body(self, dictionary={}):
-        return Template(self.html_body).render(EmailContext(dictionary))
+        return Template(markdown.markdown(self.html_body)).render(EmailContext(dictionary))
 
     def html_content(self, dictionary={}):
         if not self.template_name:
