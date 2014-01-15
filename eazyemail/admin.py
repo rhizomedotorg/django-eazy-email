@@ -3,6 +3,6 @@ from eazyemail.models import EazyEmail
 
 
 class EazyEmailAdmin(admin.ModelAdmin):
-    pass
+    exclude = ('slug',)
 
 admin.site.register(EazyEmail, EazyEmailAdmin)
