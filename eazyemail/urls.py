@@ -1,6 +1,8 @@
-from django.conf.urls import patterns, url
+from django.conf.urls.defaults import patterns, url
 
+from eazyemail.views import preview
 
-urlpatterns = patterns('eazyemail.views',
-    url(r'^(?P<slug>\w+)/$', 'preview', name='eazyemail_preview'),
+urlpatterns = patterns('',
+    url(r'^preview/(?P<slug>[-\w]+)/$', preview, name='eazyemail_preview'),
 )
+
