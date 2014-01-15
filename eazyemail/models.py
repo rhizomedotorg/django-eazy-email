@@ -28,7 +28,7 @@ class EazyEmail(models.Model):
         return json.loads(self.dummy_data)
 
     def get_absolute_url(self):
-        return reverse('eazyemail_preview', args=(self.slug))
+        return reverse('eazyemail_preview', args=([self.slug]))
 
     def __unicode__(self):
         return '%s' % self.title
@@ -46,7 +46,7 @@ class EazyEmail(models.Model):
         dictionary.update({
             'message_body': self.render_html_body(dictionary),
         })
-        return render_to_string(template_name, dictionary)
+        return render_to_string(self.template_name, dictionary)
 
     def send(self, from_email, to, bcc=None, extra_context={}, text_only=False):
         email = EmailMultiAlternatives(self.subject, self.render_text_body(extra_context), from_email, to, bcc)
