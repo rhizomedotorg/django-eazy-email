@@ -30,7 +30,7 @@ class EazyEmail(models.Model):
             try:
                 json_data = json.loads(self.dummy_data)
             except:
-                raise ValidationError('Dummy data is invalid JSON')
+                raise ValidationError('Invalid JSON')
 
     @property
     def dummy_data_dict(self):
