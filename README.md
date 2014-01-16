@@ -16,3 +16,7 @@ EAZY_EMAIL_CONTEXT_PROCESSORS = (
     'django_eazy_email.context_processors.media',
 )
 ```
+
+```python
+url(r'^email/', include('eazyemail.urls')),
+```

@@ -6,4 +6,9 @@ from eazyemail.models import EazyEmail
 
 def preview(request, slug):
     email = get_object_or_404(EazyEmail, slug=slug)
-    return HttpResponse(email.html_content(email.dummy_data_dict))
+
+    if email.html_body:
+        content = email.html_content(email.dummy_data_dict)
+    else:
+        content = email.render_text_body(email.dummy_data_dict)
+    return HttpResponse(content)

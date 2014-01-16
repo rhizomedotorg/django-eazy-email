@@ -16,7 +16,7 @@ class EazyEmail(models.Model):
     slug = models.SlugField(max_length=100)
     dummy_data = models.TextField(blank=True)
     subject = models.CharField(max_length=100, blank=True)
-    text_body = models.TextField(blank=True)
+    text_body = models.TextField()
     html_body = models.TextField('HTML body', blank=True)
     template_name = models.CharField(max_length=100, blank=True)
 
@@ -49,8 +49,8 @@ class EazyEmail(models.Model):
         })
         return render_to_string(self.template_name, dictionary)
 
-    def send(self, from_email, to, bcc=None, extra_context={}, text_only=False):
+    def send(self, from_email, to, bcc=None, extra_context={}):
         email = EmailMultiAlternatives(self.subject, self.render_text_body(extra_context), from_email, to, bcc)
-        if not text_only:
+        if self.html_body:
             email.attach_alternative(self.html_content(extra_context), 'text/html')
         email.send(fail_silently=False)
