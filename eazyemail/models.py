@@ -26,11 +26,9 @@ class EazyEmail(models.Model):
         super(EazyEmail, self).save(*args, **kwargs)
 
     def clean(self):
-        dummy_data = self.cleaned_data.get('dummy_data')
-
-        if dummy_data:
+        if self.dummy_data:
             try:
-                json_data = json.loads(dummy_data)
+                json_data = json.loads(self.dummy_data)
             except:
                 raise ValidationError('Invalid JSON')
 
