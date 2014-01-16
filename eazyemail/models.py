@@ -2,6 +2,7 @@ import json
 import markdown
 
 from django.core.mail import EmailMessage, EmailMultiAlternatives
+from django.core.exceptions import ValidationError
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.template import Template
@@ -23,6 +24,15 @@ class EazyEmail(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         super(EazyEmail, self).save(*args, **kwargs)
+
+    def clean(self):
+        dummy_data = self.cleaned_data.get('dummy_data')
+
+        if dummy_data:
+            try:
+                json_data = json.loads(dummy_data)
+            except:
+                raise ValidationError('Invalid JSON')
 
     @property
     def dummy_data_dict(self):
