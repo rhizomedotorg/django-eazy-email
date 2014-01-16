@@ -15,10 +15,10 @@ from eazyemail.context import EmailContext
 class EazyEmail(models.Model):
     title = models.CharField(max_length=100)
     slug = models.SlugField(max_length=100)
-    dummy_data = models.TextField(blank=True)
+    dummy_data = models.TextField(blank=True, help_text='must be valid JSON')
     subject = models.CharField(max_length=100, blank=True)
     text_body = models.TextField()
-    html_body = models.TextField('HTML body', blank=True)
+    html_body = models.TextField('HTML body', blank=True, help_text='parsed with Markdown')
     template_name = models.CharField(max_length=100, blank=True)
 
     def save(self, *args, **kwargs):
@@ -30,7 +30,7 @@ class EazyEmail(models.Model):
             try:
                 json_data = json.loads(self.dummy_data)
             except:
-                raise ValidationError('Invalid JSON')
+                raise ValidationError('Dummy data is invalid JSON')
 
     @property
     def dummy_data_dict(self):
